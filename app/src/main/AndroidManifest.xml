@@ -34,6 +34,7 @@
            <activity  android:name="com.example.android_app_stroe.SoftWare"></activity>
            <activity  android:name="com.example.android_app_stroe.DownLoading"></activity>
             <activity  android:name="com.example.android_app_stroe.List_Software"></activity>
+            <activity  android:name="com.example.android_app_stroe.Update"></activity>
              <activity  android:name="com.example.android_app_stroe.Detail_info"></activity>
               <activity  android:name="com.example.android_app_stroe.Why_Hate"></activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->

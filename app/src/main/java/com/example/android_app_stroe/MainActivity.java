@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,29 +16,43 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.Download_File.download_file;
 import com.example.Download_File.download_file_queue;
+import com.example.Download_File.download_file_queue_item;
 import com.example.JSON.JSON;
 import com.example.JSON.Software;
 import com.example.JSON.game;
 import com.example.Tool.Constant;
+import com.example.Tool.State;
 import com.example.loadImage.AsyncLoadImage;
 import com.example.loadImage.load_jiemian;
 
 
 public class MainActivity extends Activity {
+
+	// 7.1
+	class viewHolder_download {
+		ProgressBar pb_down;
+	}
+	private viewHolder_download view_progeressBar;
+
+
 
 	ViewPager viewpage;
 	ListView paihang ;
@@ -155,13 +170,14 @@ public class MainActivity extends Activity {
 
 				convertView = mInflater.inflate(R.layout.list_view_child,null);
 				holder = new ViewHolder();
-
+				view_progeressBar=new MainActivity.viewHolder_download();
+				view_progeressBar.pb_down = (ProgressBar)findViewById(R.id.pb_downloading);
 				holder.soft_touxiang= (ImageView)convertView.findViewById(R.id.soft_image);
 				holder.soft_name = (TextView)convertView.findViewById(R.id.soft_name);
 				holder.soft_jianjie = (TextView)convertView.findViewById(R.id.soft_jianjie);
 				holder.soft_daxiao = (TextView)convertView.findViewById(R.id.soft_daxiao);
 				holder.soft_download_count = (TextView)convertView.findViewById(R.id.soft_download_count);
-				holder.rl_downlowad = (ImageView)convertView.findViewById(R.id.img_download);
+				holder.rl_downlowad = (Button)convertView.findViewById(R.id.img_download);
 				holder.Ll_download = (LinearLayout)convertView.findViewById(R.id.Ll_who);
 
 				convertView.setTag(holder);
@@ -280,6 +296,17 @@ public class MainActivity extends Activity {
 
 					//��Ӷ��еȴ�����
 					if(key.equals("Software")){
+
+						// 首页添加下载进度的提示 2016.7.1
+						Toast.makeText(getApplicationContext(), "开始下载", Toast.LENGTH_SHORT).show();
+
+						DownLoading db = new DownLoading();
+						double size=db.tmp;
+						Log.d("111",size+"");
+
+
+						view_progeressBar.pb_down.setProgress((int) size);
+
 						download_file_queue.Add_item(
 								new download_file((((Software) obj).getsoft_id()),(((Software) obj).getsoft_name())
 										,getApplicationContext(),"software"));
@@ -287,12 +314,15 @@ public class MainActivity extends Activity {
 				}
 			}
 		}
-
+		class viewHolder_download {
+			ProgressBar pb_down;
+		}
 		class ViewHolder{
 			public ImageView soft_touxiang;
 			public TextView soft_name,soft_jianjie,soft_daxiao,soft_download_count;
-			public ImageView rl_downlowad;
+			public Button rl_downlowad;
 			public LinearLayout Ll_download;
+
 		}
 
 	}

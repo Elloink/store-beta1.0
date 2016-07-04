@@ -15,7 +15,7 @@ import android.widget.TabHost;
 
 public class Main_face extends ActivityGroup {
 	TabHost tabHost;
-	RadioButton paihang,software,game,download ;
+	RadioButton paihang,software,game,download ,update;
 	@Override
 	public void onCreate(Bundle o){
 		super.onCreate(o);
@@ -27,15 +27,19 @@ public class Main_face extends ActivityGroup {
 		// gexing = (RadioButton) findViewById(R.id.yule);
 		game = (RadioButton) findViewById(R.id.game);
 		download = (RadioButton) findViewById(R.id.doweload);
+		update = (RadioButton) findViewById(R.id.update);
 
 		tabHost = (TabHost) findViewById(android.R.id.tabhost);
 		tabHost.setup();
 		tabHost.setup(getLocalActivityManager());
+
 		tabHost.addTab(tabHost.newTabSpec("first").setIndicator("First").setContent(new Intent(this,MainActivity.class)));
 		// tabHost.addTab(tabHost.newTabSpec("second").setIndicator("Second").setContent(new Intent(this,amusement.class)));
 		tabHost.addTab(tabHost.newTabSpec("third").setIndicator("Third").setContent(new Intent(this,Game.class)));
 		tabHost.addTab(tabHost.newTabSpec("fourth").setIndicator("Fourth").setContent(new Intent(this,SoftWare.class)));
 		tabHost.addTab(tabHost.newTabSpec("fifth").setIndicator("Fifth").setContent(new Intent(this,DownLoading.class)));
+		tabHost.addTab(tabHost.newTabSpec("six").setIndicator("Six").setContent(new Intent(this,Update.class)));
+		tabHost.addTab(tabHost.newTabSpec("six").setIndicator("Six").setContent(new Intent(this,Update.class)));
 		RadioButtonclick click = new RadioButtonclick();
 
 		paihang.setOnClickListener(click);
@@ -43,6 +47,7 @@ public class Main_face extends ActivityGroup {
 		// gexing.setOnClickListener(click);
 		game.setOnClickListener(click);
 		download.setOnClickListener(click);
+		update.setOnClickListener(click);
 
 //
 	}
@@ -65,6 +70,9 @@ public class Main_face extends ActivityGroup {
 			}
 			else if(who == download){
 				tabHost.setCurrentTabByTag("fifth");
+			}
+			else if(who == update){
+				tabHost.setCurrentTabByTag("six");
 			}
 
 		}

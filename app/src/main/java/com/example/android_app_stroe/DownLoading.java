@@ -45,7 +45,7 @@ public class DownLoading extends Activity {
     int i = 0;*/
     String url;
 
-
+    double tmp;
 
     ListView downloading_task, download_his;
     downloading_baseAdapter downloading_BaseAdapter;
@@ -63,26 +63,6 @@ public class DownLoading extends Activity {
 
     @Override
     public void onCreate(Bundle o) {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         super.onCreate(o);
         setContentView(R.layout.downloading);
@@ -234,12 +214,8 @@ public class DownLoading extends Activity {
             download_file_queue_item temp = download_file_queue.get_ArrayList()
                     .get(arg0);
 
-            long temp_file_size = temp.get_filesize();
-            long downloaded_size = temp.get_downloaded_size();
-
-
-
-
+             long temp_file_size = temp.get_filesize();
+             long downloaded_size = temp.get_downloaded_size();
 
 
 
@@ -287,8 +263,10 @@ public class DownLoading extends Activity {
             }
 
 
-            double pb = ((double) downloaded_size / (double) temp_file_size) * 1000;
+           double pb = ((double) downloaded_size / (double) temp_file_size) * 1000;
             view_downloaded.pb_down.setProgress((int) pb);
+
+            tmp=pb;
 
             click_continue temp_click = new click_continue(view_downloaded, temp);
             view_downloaded.soft_down_operate.setOnClickListener(temp_click);
@@ -449,15 +427,6 @@ public class DownLoading extends Activity {
             view_downloaded.soft_down_img.setImageBitmap(bitmap);*/
 
 
-
-
-
-
-
-
-
-
-
             view_downloaded = (viewHolder_download) arg1.getTag();
             view_downloaded.soft_down_name.setText(downloaded_array.get_downloaded().get(arg0)[2]);
             Float size = Float.parseFloat(downloaded_array.get_downloaded().get(arg0)[3]) / (1024 * 1024);
@@ -491,14 +460,6 @@ public class DownLoading extends Activity {
 
             });
             return arg1;
-
-
-
-
-
-
-
-
 
 
 

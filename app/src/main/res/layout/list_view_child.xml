@@ -11,7 +11,7 @@
     android:id="@+id/soft_image"
     android:layout_width="50dp"
     android:layout_height="50dp"
-    android:layout_gravity="center_vertical"
+
     android:layout_marginLeft="5dp"
     android:layout_weight="1"
     android:src="@drawable/ic_launcher" />
@@ -40,8 +40,19 @@
     		    android:layout_toRightOf="@id/soft_image"
     		    android:ems="7"
     		    android:maxLines="3"
-    		    android:textSize="10sp" />
-    
+				android:textSize="10sp" />
+			<ProgressBar
+				android:id="@+id/pb_downloading"
+				android:layout_width="fill_parent"
+				android:layout_height="2dp"
+				style="?android:attr/progressBarStyleHorizontal"
+
+				android:max="1000"
+
+				/>
+
+
+
 </LinearLayout>
 <LinearLayout
     android:layout_width="wrap_content"
@@ -61,6 +72,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="10万次下载" />
+		<TextView
+			android:id="@+id/down_jindu"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/soft_download_count"
+			android:layout_marginTop="2dp"
+			android:layout_toRightOf="@id/soft_image"
+			android:ems="7"
+			android:text="10%"
+			android:textSize="10sp" />
     
 </LinearLayout>
 <ImageView
@@ -71,16 +92,21 @@
         android:layout_weight="1"
         android:src="@drawable/tab_line" />
 
-    	          
-       <ImageView
-          
-           android:layout_weight="2"
-		    android:id="@+id/img_download"
-		    android:layout_marginTop="5dp"
-		    android:layout_width="45dp"
-		    android:layout_height="wrap_content"
-		    android:src="@drawable/ic_pulltorefresh_arrow"
-		/>
+	<Button
+		android:id="@+id/img_download"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="下载"
+		android:gravity="center"/>
+       <!--<ImageView-->
+          <!---->
+           <!--android:layout_weight="2"-->
+		    <!--android:id="@+id/img_download"-->
+		    <!--android:layout_marginTop="5dp"-->
+		    <!--android:layout_width="45dp"-->
+		    <!--android:layout_height="wrap_content"-->
+		    <!--android:src="@drawable/ic_pulltorefresh_arrow"-->
+		<!--/>-->
       
     
 

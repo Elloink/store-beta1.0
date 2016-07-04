@@ -54,11 +54,21 @@
              style="@style/xhc_radiobutton"
              android:drawableTop="@drawable/paihang"
              android:text="游戏"/>
-             <RadioButton 
-           
+
+
+         <RadioButton
+
              android:id="@+id/doweload"
              style="@style/xhc_radiobutton"
              android:drawableTop="@drawable/paihang"
              android:text="下载"/>
+
+         <RadioButton
+
+             android:id="@+id/update"
+             style="@style/xhc_radiobutton"
+             android:drawableTop="@drawable/paihang"
+             android:text="更新"/>
+
      </RadioGroup>
 </TabHost>

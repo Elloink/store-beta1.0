@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -182,7 +183,7 @@ public class List_Software extends Activity {
 				holder.soft_jianjie = (TextView)convertView.findViewById(R.id.soft_jianjie);
 				holder.soft_daxiao = (TextView)convertView.findViewById(R.id.soft_daxiao);
 				holder.soft_download_count = (TextView)convertView.findViewById(R.id.soft_download_count);
-				holder.rl_downlowad = (ImageView)convertView.findViewById(R.id.img_download);
+				holder.rl_downlowad = (Button) convertView.findViewById(R.id.img_download);
 				holder.ll_who = (LinearLayout)convertView.findViewById(R.id.Ll_who);
 				convertView.setTag(holder);
 
@@ -430,7 +431,7 @@ public class List_Software extends Activity {
 	class ViewHolder{
 		public ImageView soft_touxiang;
 		public TextView soft_name,soft_jianjie,soft_daxiao,soft_download_count;
-		public ImageView rl_downlowad;
+		public Button rl_downlowad;
 		public LinearLayout ll_who ;
 	}
 

@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from F:\Android\store-beta1.0\app\src\main\AndroidManifest.xml:2:1-46:12
+ADDED from F:\Android\store-beta1.0\app\src\main\AndroidManifest.xml:2:1-47:12
 	xmlns:android
 		ADDED from F:\Android\store-beta1.0\app\src\main\AndroidManifest.xml:2:11-69
 	package
@@ -42,7 +42,7 @@ MERGED from [com.android.support:support-v4:22.2.0] F:\Android\store-beta1.0\app
 		INJECTED from F:\Android\store-beta1.0\app\src\main\AndroidManifest.xml
 		INJECTED from F:\Android\store-beta1.0\app\src\main\AndroidManifest.xml
 application
-ADDED from F:\Android\store-beta1.0\app\src\main\AndroidManifest.xml:13:5-44:19
+ADDED from F:\Android\store-beta1.0\app\src\main\AndroidManifest.xml:13:5-45:19
 MERGED from [com.android.support:support-v4:22.2.0] F:\Android\store-beta1.0\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-appindexing:8.1.0] F:\Android\store-beta1.0\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.1.0\AndroidManifest.xml:19:5-20
 MERGED from [com.google.android.gms:play-services-basement:8.1.0] F:\Android\store-beta1.0\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\AndroidManifest.xml:20:5-24:19
@@ -95,18 +95,22 @@ activity#com.example.android_app_stroe.List_Software
 ADDED from F:\Android\store-beta1.0\app\src\main\AndroidManifest.xml:36:13-94
 	android:name
 		ADDED from F:\Android\store-beta1.0\app\src\main\AndroidManifest.xml:36:24-82
+activity#com.example.android_app_stroe.Update
+ADDED from F:\Android\store-beta1.0\app\src\main\AndroidManifest.xml:37:13-87
+	android:name
+		ADDED from F:\Android\store-beta1.0\app\src\main\AndroidManifest.xml:37:24-75
 activity#com.example.android_app_stroe.Detail_info
-ADDED from F:\Android\store-beta1.0\app\src\main\AndroidManifest.xml:37:14-93
+ADDED from F:\Android\store-beta1.0\app\src\main\AndroidManifest.xml:38:14-93
 	android:name
-		ADDED from F:\Android\store-beta1.0\app\src\main\AndroidManifest.xml:37:25-81
+		ADDED from F:\Android\store-beta1.0\app\src\main\AndroidManifest.xml:38:25-81
 activity#com.example.android_app_stroe.Why_Hate
-ADDED from F:\Android\store-beta1.0\app\src\main\AndroidManifest.xml:38:15-91
+ADDED from F:\Android\store-beta1.0\app\src\main\AndroidManifest.xml:39:15-91
 	android:name
-		ADDED from F:\Android\store-beta1.0\app\src\main\AndroidManifest.xml:38:26-79
+		ADDED from F:\Android\store-beta1.0\app\src\main\AndroidManifest.xml:39:26-79
 meta-data#com.google.android.gms.version
-ADDED from F:\Android\store-beta1.0\app\src\main\AndroidManifest.xml:40:9-42:69
+ADDED from F:\Android\store-beta1.0\app\src\main\AndroidManifest.xml:41:9-43:69
 MERGED from [com.google.android.gms:play-services-basement:8.1.0] F:\Android\store-beta1.0\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\AndroidManifest.xml:21:9-23:69
 	android:name
-		ADDED from F:\Android\store-beta1.0\app\src\main\AndroidManifest.xml:41:13-58
+		ADDED from F:\Android\store-beta1.0\app\src\main\AndroidManifest.xml:42:13-58
 	android:value
-		ADDED from F:\Android\store-beta1.0\app\src\main\AndroidManifest.xml:42:13-66
+		ADDED from F:\Android\store-beta1.0\app\src\main\AndroidManifest.xml:43:13-66

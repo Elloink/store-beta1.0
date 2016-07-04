@@ -35,6 +35,7 @@
         <activity android:name="com.example.android_app_stroe.SoftWare" />
         <activity android:name="com.example.android_app_stroe.DownLoading" />
         <activity android:name="com.example.android_app_stroe.List_Software" />
+        <activity android:name="com.example.android_app_stroe.Update" />
         <activity android:name="com.example.android_app_stroe.Detail_info" />
         <activity android:name="com.example.android_app_stroe.Why_Hate" />
         <!--
