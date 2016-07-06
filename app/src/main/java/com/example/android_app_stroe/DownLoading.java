@@ -239,12 +239,6 @@ public class DownLoading extends Activity {
                 view_downloaded.soft_down_img.setImageBitmap(bitmap);
 
 
-
-
-
-
-
-
             long for_sudu = 0;
             if (temp.get_flag() == State.downloading) {
                 view_downloaded.soft_down_operate.setTextSize(20);

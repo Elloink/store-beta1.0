@@ -3,10 +3,12 @@ package com.example.Download_File;
 import android.content.Context;
 import android.os.Environment;
 import android.os.Looper;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.Tool.Constant;
 import com.example.Tool.Http_;
+import com.example.Tool.HttpsTest;
 import com.example.Tool.State;
 import com.example.sql.Sql_Lite;
 
@@ -17,6 +19,8 @@ import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class download_file {
 
@@ -111,8 +115,8 @@ public class download_file {
 		if (countFlag){
 			String urlc=Constant.Zurl+"/count?id="+file_id+"&classify="+file_classify;
 			try {
-				URL url = new URL(urlc);
-				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+				//URL url = new URL(urlc);
+				HttpsURLConnection conn = (HttpsURLConnection) HttpsTest.getHttpsURLConnection(urlc);
 				conn.setRequestMethod("GET");
 				conn.getInputStream();
 				countFlag=false;
@@ -190,18 +194,18 @@ public class download_file {
 			String urlpath = null;
 			if(file_classify.equals("game")){
 
-				urlpath ="http://192.168.191.1:8080/AppStoreServer/download?path=Game/"+file_id+"/"+file_id+".apk";
+				urlpath ="https://dev.openthos.org/appstore/AppStoreServer/download?path=Game/"+file_id+"/"+file_id+".apk";
 			}
 			else if(file_classify.equals("software")){
 
-				urlpath ="http://192.168.191.1:8080/AppStoreServer/download?path=Software/"+file_id+"/"+file_id+".apk";
+				urlpath ="https://dev.openthos.org/appstore/AppStoreServer/download?path=Software/"+file_id+"/"+file_id+".apk";
 			}
 			System.out.println(urlpath);
 			URL url;
 			try {
-				url = new URL(urlpath);
-				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
+				//url = new URL(urlpath);
+				//HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+				HttpsURLConnection conn = (HttpsURLConnection) HttpsTest.getHttpsURLConnection(urlpath);
 				conn.setRequestMethod("GET");
 				conn.setConnectTimeout(6*1000);
 				conn.setRequestProperty("Accept-Language", "zh-CN");
@@ -299,21 +303,40 @@ public class download_file {
 			File sdCardDir = null;
 			int get_data = 0 ;
 			File destDir = null ;
+
 			if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
 				sdCardDir  = Environment.getExternalStorageDirectory();
-				destDir  = new File(sdCardDir + "/app_store/");
+
+				if(file_id == 100){
+					Log.d("1111", "11111");
+
+					// sdCardDir=Environment.getRootDirectory();
+					destDir  =new File (sdCardDir + "/System_OS/" );
+				}else{
+					Log.d("2222", "2222");
+					destDir = new File(sdCardDir + "/app_store/");
+				}
+
 			}
 			else{
 				Looper.prepare();
-				Toast.makeText(context, "sdcard 呢?", Toast.LENGTH_SHORT).show();
-				Looper.loop();
+				Toast.makeText(context, "下载到手机中", Toast.LENGTH_SHORT).show();
+			//	sdCardDir=Environment.getRootDirectory();
+			//	destDir  =new File (sdCardDir + "system apk" );
+			     Looper.loop();
 				return ;
 			}
 
 			if (!destDir.exists()) {
 				destDir.mkdirs();
 			}
-			File file = new File(sdCardDir+"/app_store/" ,file_name+".apk");
+			File file;
+			if(file_id == 100) {
+				file = new File(sdCardDir + "/System_OS/", file_name + ".apk");
+			}
+			else {
+				file = new File(sdCardDir + "/app_store/", file_name + ".apk");
+			}
 			RandomAccessFile outfile = new RandomAccessFile(file, "rw");
 			int temp_count = 0 ;
 			byte[] buffer = new byte[300 * 1024];
@@ -358,9 +381,9 @@ public class download_file {
 			}
 			URL url;
 			try {
-				url = new URL(urlpath);
-				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
+				//url = new URL(urlpath);
+				//HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+				HttpsURLConnection conn = (HttpsURLConnection) HttpsTest.getHttpsURLConnection(urlpath);
 				conn.setRequestMethod("GET");
 				conn.setConnectTimeout(6 * 1000);
 				conn.setRequestProperty("Accept-Language", "zh-CN");

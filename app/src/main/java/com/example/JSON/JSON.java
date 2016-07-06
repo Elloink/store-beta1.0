@@ -3,6 +3,7 @@ package com.example.JSON;
 import android.util.Log;
 
 import com.example.Tool.Constant;
+import com.example.Tool.HttpsTest;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -14,6 +15,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.net.ssl.HttpsURLConnection;
+
 //import org.apache.commons.logging.Log;
 
 public class JSON {
@@ -24,7 +27,7 @@ public class JSON {
 		String path=Constant.database_path+"software&time="+time+"&classify="+classify;
 		System.out.println(path);
 		try {
-			HttpURLConnection conn = (HttpURLConnection) new URL(path).openConnection();
+			HttpsURLConnection conn = (HttpsURLConnection) HttpsTest.getHttpsURLConnection(path);
 			conn.setConnectTimeout(5000);
 			conn.setRequestMethod("POST");
 			if(conn.getResponseCode() == 200){
@@ -74,7 +77,7 @@ public class JSON {
 		String path=Constant.database_path+"paihang";
 
 		try{
-			HttpURLConnection conn = (HttpURLConnection) new URL(path).openConnection();
+			HttpsURLConnection conn = (HttpsURLConnection) HttpsTest.getHttpsURLConnection(path);
 			conn.setConnectTimeout(5000);
 			conn.setRequestMethod("POST");
 			if(conn.getResponseCode() == 200){
@@ -156,7 +159,7 @@ public class JSON {
 		String path=Constant.database_path+"search&keywords="+keywords;
 		System.out.println("我来看看路径       " +path);
 		try{
-			HttpURLConnection conn = (HttpURLConnection) new URL(path).openConnection();
+			HttpsURLConnection conn = (HttpsURLConnection) HttpsTest.getHttpsURLConnection(path);
 			conn.setConnectTimeout(5000);
 			conn.setRequestMethod("POST");
 			if(conn.getResponseCode() == 200){
@@ -267,7 +270,7 @@ public class JSON {
 		ArrayList<String> array = new ArrayList<String>();
 		String path=Constant.database_path+"get_estimate&table="+table+"&ID="+id;
 		try{
-			HttpURLConnection conn = (HttpURLConnection) new URL(path).openConnection();
+			HttpsURLConnection conn = (HttpsURLConnection) HttpsTest.getHttpsURLConnection(path);
 			conn.setConnectTimeout(5000);
 			conn.setRequestMethod("POST");
 			if(conn.getResponseCode() == 200){
@@ -423,7 +426,7 @@ public class JSON {
 		ArrayList<game> array = new ArrayList<game>();
 		String path = Constant.database_path+"game&time="+time+"&classify="+classify;
 		try{
-			HttpURLConnection conn = (HttpURLConnection) new URL(path).openConnection();
+			HttpsURLConnection conn = (HttpsURLConnection) HttpsTest.getHttpsURLConnection(path);
 			conn.setConnectTimeout(5000);
 			conn.setRequestMethod("POST");
 			if(conn.getResponseCode() == 200){
