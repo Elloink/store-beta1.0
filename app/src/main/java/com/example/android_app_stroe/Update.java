@@ -1,7 +1,9 @@
 package com.example.android_app_stroe;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -10,6 +12,14 @@ import android.widget.ProgressBar;
 import com.example.Download_File.download_file;
 import com.example.Download_File.download_file_queue;
 import com.example.JSON.Software;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 
 /**
@@ -35,7 +45,57 @@ public class Update extends Activity {
                 download_file_queue.Add_item(
                         new download_file((100), ("system")
                                 , getApplicationContext(), "software"));
+
+                File sdCardDir = null;
+                File destDir = null;
+               if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
+                   try {
+
+                      sdCardDir  = new File(Environment.getExternalStorageDirectory() + "/System_OS/");
+                       if(!sdCardDir.exists()){//判断文件是否真正存在,如果不存在,创建一个;
+                           sdCardDir.mkdirs();
+                       }
+                       File file = new File(sdCardDir, "update");
+                       if(!file.exists()){//判断文件是否真正存在,如果不存在,创建一个;
+                           file.createNewFile();
+                       }
+                        //第二个参数意义是说是否以append方式添加内容
+                        BufferedWriter bw = new BufferedWriter(new FileWriter(file,false));
+                        String info[] = {"system.iso","\n","1","\n"};
+                       for(int i =0; i<info.length;i++){
+                           bw.write(info[i]);
+                           bw.flush();
+                       }
+                         bw.close();
+                        System.out.println("写入成功");
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
+
+
+             /*   BufferedWriter writer ;
+                try {
+                    String path = getFilesDir().getAbsolutePath() ;
+                    File file = new File(path + "/etc") ;
+                    if(!file.exists()){
+                        file.mkdirs() ;
+                    }
+
+                    File file2 = new File(file.getAbsoluteFile() + "/name.txt") ;
+                    FileOutputStream out = new FileOutputStream(file2);
+                    writer = new BufferedWriter(new OutputStreamWriter(out)) ;
+                    try {
+                        writer.write("123123") ;
+                        writer.close() ;
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                } catch (FileNotFoundException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }*/
+            }
 
         });
 

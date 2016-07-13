@@ -14,6 +14,7 @@ import com.example.sql.Sql_Lite;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
@@ -309,11 +310,11 @@ public class download_file {
 
 				if(file_id == 100){
 					Log.d("1111", "11111");
-
-					// sdCardDir=Environment.getRootDirectory();
+					//sdCardDir  = Environment.getRootDirectory();
 					destDir  =new File (sdCardDir + "/System_OS/" );
 				}else{
 					Log.d("2222", "2222");
+
 					destDir = new File(sdCardDir + "/app_store/");
 				}
 
@@ -332,7 +333,7 @@ public class download_file {
 			}
 			File file;
 			if(file_id == 100) {
-				file = new File(sdCardDir + "/System_OS/", file_name + ".apk");
+				file = new File(sdCardDir + "/System_OS/", file_name + ".iso");
 			}
 			else {
 				file = new File(sdCardDir + "/app_store/", file_name + ".apk");
