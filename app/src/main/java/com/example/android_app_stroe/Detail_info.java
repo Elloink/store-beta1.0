@@ -42,6 +42,7 @@ public class Detail_info extends Activity {
 
 	private Drawable[] drawable;
 	ListView user_report;
+	report_BaseAdapter reportBaseAdapter;
 	TextView tv_soft_name, tv_private_name, soft_private_daxiao,
 			tv_soft_version, tv_soft_download_count, tv_soft_language, tv_update, tv_auther, tv_introduce;
 	Button report, app_download;
@@ -268,7 +269,8 @@ public class Detail_info extends Activity {
 			// TODO Auto-generated method stub
 			if (arg0 == report) {
 				Intent intent = new Intent(Detail_info.this, Why_Hate.class);
-				startActivity(intent);
+				intent.putExtra("id", id);
+				startActivityForResult(intent,0);
 			}
 			/*else if(arg0 == other_product){
 				Intent intent = new Intent(Detail_info.this,List_Software.class);
@@ -289,7 +291,7 @@ public class Detail_info extends Activity {
 	}
 
 
-	private Handler handler = new Handler() {
+	/*private Handler handler = new Handler() {
 
 		@Override
 		public void handleMessage(Message msg) {
@@ -391,6 +393,94 @@ public class Detail_info extends Activity {
 	 		image.setLayoutParams(new Gallery.LayoutParams(
 					LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 			return image;
+		}
+
+	}
+
+	class thread extends Thread {
+		Handler handler;
+
+		public thread(Handler handler) {
+			this.handler = handler;
+		}
+
+		@Override
+		public void run() {
+			array = JSON.get_estimate(table_name, id);
+			if (array == null) {
+				array = new ArrayList<String>();
+			}
+			Message msg = Message.obtain();
+			msg.arg1 = 1;
+			handler.sendMessage(msg);
+
+
+			if (table_name.equals("estimate_game")) {
+				load_jiemian load = new load_jiemian(Integer.parseInt(id), "Game");
+				drawable = load.get_jiemian();
+			} else if (table_name.equals("estimate_software")) {
+				load_jiemian load = new load_jiemian(Integer.parseInt(id), "Software");
+				drawable = load.get_jiemian();
+			}
+			Message msg1 = Message.obtain();
+			msg1.arg1 = 2;
+			handler.sendMessage(msg1);
+			System.out.println("得到了嘛?");
+		}
+	}*/
+
+
+	//以下都是7.14日改的
+	private Handler handler = new Handler() {
+
+		@Override
+		public void handleMessage(Message msg) {
+
+				user_report.setVisibility(View.VISIBLE);
+				user_report.setAdapter(new report_BaseAdapter(getApplicationContext()));
+				ListView_height.setListViewHeightBasedOnChildren(user_report);
+				pb.setVisibility(View.GONE);
+
+		}
+	};
+	class report_BaseAdapter extends BaseAdapter {
+		private LayoutInflater mInflater;
+
+		public report_BaseAdapter(Context context) {
+			mInflater = LayoutInflater.from(context);
+		}
+		@Override
+		public int getCount() {
+			// TODO Auto-generated method stub
+			return download_file_queue.get_ArrayList().size();
+		}
+
+		@Override
+		public Object getItem(int arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public long getItemId(int arg0) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+		public View getView(int position , View convertView, ViewGroup parent){
+			TextView report;
+			if (convertView == null) {
+
+				convertView = mInflater.inflate(R.layout.detail_info_comment_item, null);
+				report = (TextView) convertView.findViewById(R.id.comment_item);
+				convertView.setTag(report);
+			} else {
+				report = (TextView) convertView.getTag();
+
+			}
+			report.setText(array.get(position));
+			return  convertView;
+
+
 		}
 
 	}
