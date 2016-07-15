@@ -62,7 +62,7 @@ public class Why_Hate extends Activity {
 
 				id = intent1.getStringExtra("id");
 
-				params.append("aid").append("=").append(id).append("&").append("comment").append("=").append(comment_detail);
+				params.append("aid").append("=").append(id).append("&").append("comment").append("=").append(comment_detail).append("&").append("type=add");
 				System.out.println(comment_detail);
 				System.out.println(id);
 				byte[] bypes = params.toString().getBytes();

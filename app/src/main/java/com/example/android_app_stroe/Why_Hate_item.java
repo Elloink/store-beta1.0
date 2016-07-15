@@ -6,9 +6,17 @@ import android.os.Bundle;
 /**
  * Created by yoko on 2016/7/14.
  */
-public class Why_Hate_item  extends Activity {
-    public void onCreate(Bundle o) {
-        super.onCreate(o);
-        setContentView(R.layout.detail_info_comment_item);
+public class Why_Hate_item  {
+    private  String content;
+    private String time;
+    public Why_Hate_item(String content,String time){
+        this.content = content;
+        this.time= time;
+    }
+    public String getContent(){
+        return content;
+    }
+    public String getTime(){
+        return  time;
     }
 }

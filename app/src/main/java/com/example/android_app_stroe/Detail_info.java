@@ -9,11 +9,13 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.Gallery;
@@ -31,18 +33,26 @@ import com.example.JSON.JSON;
 import com.example.JSON.Software;
 import com.example.JSON.game;
 import com.example.Tool.Constant;
+import com.example.Tool.HttpsTest;
 import com.example.loadImage.load_jiemian;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Detail_info extends Activity {
 
+	private List<Why_Hate_item> commentList = new ArrayList<Why_Hate_item>();
+
 	private Drawable[] drawable;
 	ListView user_report;
-	report_BaseAdapter reportBaseAdapter;
+	//report_BaseAdapter reportBaseAdapter;
 	TextView tv_soft_name, tv_private_name, soft_private_daxiao,
 			tv_soft_version, tv_soft_download_count, tv_soft_language, tv_update, tv_auther, tv_introduce;
 	Button report, app_download;
@@ -80,7 +90,15 @@ public class Detail_info extends Activity {
 		tv_introduce = (TextView) findViewById(R.id.tv_introduce);
 		//other_product = (Button) findViewById(R.id.bt_other_product);
 		sc = (ScrollView) findViewById(R.id.just_sc);
+
+
+		commentAdapter adapter = new commentAdapter(this,R.layout.detail_info_comment_item,commentList);
 		user_report = (ListView) findViewById(R.id.comment);
+		user_report.setAdapter(adapter);
+
+
+
+
 		search = (ImageView) findViewById(R.id.daohang_search);
 		report = (Button) findViewById(R.id.report);
 		softgallery = (Gallery) findViewById(R.id.gallery);
@@ -167,10 +185,28 @@ public class Detail_info extends Activity {
 		click Click = new click();
 		//  other_product.setOnClickListener(Click);
 		report.setOnClickListener(Click);
-		new thread(handler).start();
+		//new thread(handler).start();
 		// ATTENTION: This was auto-generated to implement the App Indexing API.
 		// See https://g.co/AppIndexing/AndroidStudio for more information.
 		//client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+			try{
+			String comment_result = new HttpsTest().get_comment(id);
+			JSONArray jsonArray = new JSONArray(comment_result);
+			for (int i = 0; i < jsonArray.length(); i++) {
+				JSONObject jsonObject = jsonArray.getJSONObject(i);
+				String get_aid = (String) jsonObject.get("aid");
+				String get_content = (String) jsonObject.get("content");
+				String get_time = (String) jsonObject.get("time");
+
+				Log.d("2222",get_content+"");
+				commentList.add(new Why_Hate_item(get_content,get_time));
+			}
+
+			}catch (Exception e){
+				e.printStackTrace();
+			}
+
 	}
 
 
@@ -431,7 +467,7 @@ public class Detail_info extends Activity {
 
 
 	//以下都是7.14日改的
-	private Handler handler = new Handler() {
+	/*private Handler handler = new Handler() {
 
 		@Override
 		public void handleMessage(Message msg) {
@@ -442,8 +478,8 @@ public class Detail_info extends Activity {
 				pb.setVisibility(View.GONE);
 
 		}
-	};
-	class report_BaseAdapter extends BaseAdapter {
+	};*/
+	/*class report_BaseAdapter extends BaseAdapter {
 		private LayoutInflater mInflater;
 
 		public report_BaseAdapter(Context context) {
@@ -514,6 +550,22 @@ public class Detail_info extends Activity {
 			msg1.arg1 = 2;
 			handler.sendMessage(msg1);
 			System.out.println("得到了嘛?");
+		}
+	}*/
+	public class commentAdapter extends ArrayAdapter<Why_Hate_item>{
+		private int resourceId;
+		public commentAdapter(Context context, int textViewResourceId, List<Why_Hate_item>objects){
+			super(context,textViewResourceId,objects);
+			resourceId = textViewResourceId;
+		}
+		public View getView(int position , View convertView, ViewGroup parent) {
+			Why_Hate_item comment_item = getItem(position);
+			View view = LayoutInflater.from(getContext()).inflate(resourceId,null);
+			TextView content = (TextView)view.findViewById(R.id.comment_item);
+			TextView time = (TextView)view.findViewById(R.id.comment_time);
+			content.setText(comment_item.getContent());
+			time.setText(comment_item.getTime());
+			return  view;
 		}
 	}
 }
