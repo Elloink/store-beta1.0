@@ -18,11 +18,14 @@ import com.example.JSON.Software;
 import com.example.sql.Sql_Lite;
 
 import java.io.BufferedWriter;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 
@@ -41,13 +44,50 @@ public class Update extends Activity {
             Object obj = getIntent().getSerializableExtra("obj");
             String name = getIntent().getStringExtra("soft_name");
 
+
+            public String exec(String cmd) {
+                try {
+                    if (cmd != null)
+                    {
+                        Runtime rt = Runtime.getRuntime();
+                        Process process = rt.exec("su");//Root权限
+                        //Process process = rt.exec("sh");//模拟器测试权限
+                        DataOutputStream dos = new DataOutputStream(process.getOutputStream());
+                        dos.writeBytes(cmd + "\n");
+                        dos.flush();
+                        dos.writeBytes("exit\n");
+                        dos.flush();
+                        InputStream myin = process.getInputStream();
+                        InputStreamReader is = new InputStreamReader(myin);
+                       // char[] buffer = new char[OUTPUT_BUFFER_SIZE];
+                        char[] buffer = new char[1024];
+                        int bytes_read = is.read(buffer);
+                        StringBuffer aOutputBuffer = new StringBuffer();
+                        while (bytes_read > 0) {
+                            //info.setText(aOutputBuffer.toString());
+                            aOutputBuffer.append(buffer, 0, bytes_read);
+
+                            bytes_read = is.read(buffer);
+                        }
+                        return aOutputBuffer.toString();
+                    } else {
+                        System.out.println("退出");
+                        return "请输入正确的命令";
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+
+                    return "操作异常";
+                }
+            }
+
             @Override
             //
             // 调用software的下载方法，去下载系统,7.5
             public void onClick(View v) {
 
                 download_file_queue.Add_item(
-                        new download_file((10), ("system")
+                        new download_file((100), ("system")
                                 , getApplicationContext(), "software"));
 
                 File sdCardDir = null;
@@ -75,7 +115,7 @@ public class Update extends Activity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-           /*     Sql_Lite slqTest =new Sql_Lite(Update.this);
+                Sql_Lite slqTest =new Sql_Lite(Update.this);
                 Log.d("update",slqTest.close+"");
                if(slqTest.close == true) {
                    Log.d("update","dialog出现了吗");
@@ -89,7 +129,8 @@ public class Update extends Activity {
                        @Override
                        public void onClick(DialogInterface dialog, int which) {
                            dialog.dismiss();
-
+                           exec("reboot");
+                           Log.d("REBOOT","重启了");
                            Update.this.finish();
                        }
                    });
@@ -105,7 +146,7 @@ public class Update extends Activity {
                    builder.create().show();
                }else {
                    Log.d("2222","failfialifal");
-               }*/
+               }
             }
 
         });

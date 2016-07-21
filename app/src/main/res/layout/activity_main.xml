@@ -59,13 +59,13 @@
 	       android:layout_marginLeft="6dp"
 	       android:layout_marginRight="6dp"
 	       android:layout_marginTop="6dp"
-           android:background="#aff0"
+           android:background="#affd"
            android:layout_gravity="center" 
      >
           
           <android.support.v4.view.PagerTitleStrip
             android:id="@+id/pagertitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="bottom"
             android:background="#0000"

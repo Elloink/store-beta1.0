@@ -56,6 +56,18 @@
     <string name="common_google_play_services_updating_text"><ns1:g id="app_name">%1$s</ns1:g> won\'t run without Google Play services, which are currently updating.</string>
     <string name="common_google_play_services_updating_title">Google Play services are updating</string>
     <string name="common_open_on_phone">Open on phone</string>
+    <string name="game_baoli">死亡扳机2  变脸僵尸  雪饮狂刀  死亡空间  死亡绝境</string>
+    <string name="game_dongzuo">暗影格斗  生存战争  疯狂喷气机  火箭飞人</string>
+    <string name="game_feixing">雷电2016  时空猎人  高达战争  雷电决战星河</string>
+    <string name="game_gedou">KOF  街霸  侍魂  格斗之王  格斗兄弟  拳击挑战赛</string>
+    <string name="game_juese">新征途  亡灵杀手  乱斗西游  去吧皮卡丘  少年三国志</string>
+    <string name="game_linglei">越消越疯狂  混沌之理 大便超人  天天炫舞</string>
+    <string name="game_mishi">上帝密室  最后一扇门  逃出房间  360度房间</string>
+    <string name="game_paoku">神庙逃亡  地铁跑酷  险境逃脱  矢量跑酷  矿车大逃亡</string>
+    <string name="game_qipai">皇冠麻将  QQ斗地主  博雅中国象棋  多乐跑得快  途游五子棋</string>
+    <string name="game_tiyu">手指网球  手指高尔夫  足球射门  全明星篮球赛 </string>
+    <string name="game_wangluo">龙翼编年史  掌上英雄联盟  萌宠大乱斗  众将听令 </string>
+    <string name="game_xiuxian">植物大战僵尸  愤怒的小鸟  保卫家园   快乐牛牛</string>
     <string name="life_map">天气  日历  地图  导航  旅游  购物  美食  团购  ktv 闹钟  段子  </string>
     <string name="message">信息</string>
     <string name="music">音乐</string>

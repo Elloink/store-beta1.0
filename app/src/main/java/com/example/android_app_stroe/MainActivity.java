@@ -371,15 +371,19 @@ public class MainActivity extends Activity {
 			array = JSON.get_paihang();
 			Drawable[] drawble = load_jiemian.get_viewpage();
 			ImageView img =new ImageView(getApplicationContext());
+			img.setScaleType(ImageView.ScaleType.FIT_XY);//7.21使图片自适应屏幕宽高
 			img.setImageDrawable(drawble[0]);
 			ImageView img1 =new ImageView(getApplicationContext());
 			img1.setImageDrawable(drawble[1]);
+			img1.setScaleType(ImageView.ScaleType.FIT_XY);//7.21使图片自适应屏幕宽高
 
 			ImageView img2 =new ImageView(getApplicationContext());
 			img2.setImageDrawable(drawble[2]);
+			img2.setScaleType(ImageView.ScaleType.FIT_XY);//7.21使图片自适应屏幕宽高
 
 			ImageView img3 =new ImageView(getApplicationContext());
 			img3.setImageDrawable(drawble[3]);
+			img3.setScaleType(ImageView.ScaleType.FIT_XY);//7.21使图片自适应屏幕宽高
 
 			img_page.add(img);
 			img_page.add(img1);

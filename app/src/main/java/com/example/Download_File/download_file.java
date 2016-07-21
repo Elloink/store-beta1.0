@@ -308,7 +308,7 @@ public class download_file {
 			if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
 				sdCardDir  = Environment.getExternalStorageDirectory();
 
-				if(file_id == 10){
+				if(file_id == 100){
 					Log.d("1111", "11111");
 					//sdCardDir  = Environment.getRootDirectory();
 					destDir  =new File (sdCardDir + "/System_OS/" );
