@@ -308,7 +308,7 @@ public class download_file {
 			if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
 				sdCardDir  = Environment.getExternalStorageDirectory();
 
-				if(file_id == 100){
+				if(file_id == 10){
 					Log.d("1111", "11111");
 					//sdCardDir  = Environment.getRootDirectory();
 					destDir  =new File (sdCardDir + "/System_OS/" );
@@ -332,7 +332,7 @@ public class download_file {
 				destDir.mkdirs();
 			}
 			File file;
-			if(file_id == 100) {
+			if(file_id == 10) {
 				file = new File(sdCardDir + "/System_OS/", file_name + ".iso");
 			}
 			else {

@@ -204,6 +204,7 @@ public class DownLoading extends Activity {
                 view_downloaded.soft_down_name = (TextView) arg1.findViewById(R.id.soft_down_name);
                 view_downloaded.soft_down_daxiao = (TextView) arg1.findViewById(R.id.soft_down_daxiao);
                 view_downloaded.run_sudu = (TextView) arg1.findViewById(R.id.run_sudu);
+                view_downloaded.jindu = (TextView) arg1.findViewById(R.id.jindu);//7.19
                 view_downloaded.soft_down_img = (ImageView) arg1.findViewById(R.id.soft_down_img);
                 view_downloaded.soft_down_operate = (TextView) arg1.findViewById(R.id.soft_down_operate);
                 view_downloaded.pb_down = (ProgressBar) arg1.findViewById(R.id.pb_downloading);
@@ -257,16 +258,16 @@ public class DownLoading extends Activity {
             }
 
 
-           double pb = ((double) downloaded_size / (double) temp_file_size) * 1000;
+           double pb = ((double) downloaded_size / (double) temp_file_size) * 100;
             view_downloaded.pb_down.setProgress((int) pb);
 
-            tmp=pb;
 
             click_continue temp_click = new click_continue(view_downloaded, temp);
             view_downloaded.soft_down_operate.setOnClickListener(temp_click);
             view_downloaded.soft_down_name.setText(temp.get_filename() + "");
             view_downloaded.soft_down_daxiao.setText(temp.get_filesize() / (1024 * 1024) + "M");
             view_downloaded.run_sudu.setText(sudu_str);
+            view_downloaded.jindu.setText((int)pb+"%"); //7.19
             return arg1;
         }
 
@@ -384,7 +385,7 @@ public class DownLoading extends Activity {
                 view_downloaded.soft_down_name = (TextView) arg1.findViewById(R.id.soft_down_name);
                 view_downloaded.soft_down_daxiao = (TextView) arg1.findViewById(R.id.soft_down_daxiao);
                 view_downloaded.run_sudu = (TextView) arg1.findViewById(R.id.run_sudu);
-
+                view_downloaded.jindu = (TextView) arg1.findViewById(R.id.jindu);//7.19
 
 
                 view_downloaded.soft_down_img = (ImageView) arg1.findViewById(R.id.soft_down_img);
@@ -429,6 +430,7 @@ public class DownLoading extends Activity {
             view_downloaded.soft_down_operate.setText("安装");
             view_downloaded.pb_down.setVisibility(View.GONE);
             view_downloaded.run_sudu.setVisibility(View.GONE);
+            view_downloaded.jindu.setVisibility(View.GONE);//7.19
 
             view_downloaded.soft_down_operate.setOnClickListener(new OnClickListener() {
 
@@ -466,7 +468,7 @@ public class DownLoading extends Activity {
 
 
     class viewHolder_download {
-        TextView soft_down_name, soft_down_daxiao, run_sudu, soft_down_operate;
+        TextView soft_down_name, soft_down_daxiao, run_sudu, soft_down_operate,jindu;
         ImageView soft_down_img;
         ProgressBar pb_down;
     }

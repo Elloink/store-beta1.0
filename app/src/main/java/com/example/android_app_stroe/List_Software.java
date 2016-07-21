@@ -465,6 +465,7 @@ public class List_Software extends Activity {
 
 				handler.sendMessage(msg);
 			}
+
 			else if(operate.equals("search")){
 				array_search = JSON.get_search(keywords);
 				if(array_search.size() == 0){

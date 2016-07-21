@@ -1,9 +1,12 @@
 package com.example.android_app_stroe;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -12,6 +15,7 @@ import android.widget.ProgressBar;
 import com.example.Download_File.download_file;
 import com.example.Download_File.download_file_queue;
 import com.example.JSON.Software;
+import com.example.sql.Sql_Lite;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -43,7 +47,7 @@ public class Update extends Activity {
             public void onClick(View v) {
 
                 download_file_queue.Add_item(
-                        new download_file((100), ("system")
+                        new download_file((10), ("system")
                                 , getApplicationContext(), "software"));
 
                 File sdCardDir = null;
@@ -71,30 +75,37 @@ public class Update extends Activity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+           /*     Sql_Lite slqTest =new Sql_Lite(Update.this);
+                Log.d("update",slqTest.close+"");
+               if(slqTest.close == true) {
+                   Log.d("update","dialog出现了吗");
+                   AlertDialog.Builder builder = new AlertDialog.Builder(Update.this);
+                   builder.setMessage("确认重启吗？");
 
+                   builder.setTitle("提示");
 
-             /*   BufferedWriter writer ;
-                try {
-                    String path = getFilesDir().getAbsolutePath() ;
-                    File file = new File(path + "/etc") ;
-                    if(!file.exists()){
-                        file.mkdirs() ;
-                    }
+                   builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
 
-                    File file2 = new File(file.getAbsoluteFile() + "/name.txt") ;
-                    FileOutputStream out = new FileOutputStream(file2);
-                    writer = new BufferedWriter(new OutputStreamWriter(out)) ;
-                    try {
-                        writer.write("123123") ;
-                        writer.close() ;
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                } catch (FileNotFoundException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }*/
+                       @Override
+                       public void onClick(DialogInterface dialog, int which) {
+                           dialog.dismiss();
+
+                           Update.this.finish();
+                       }
+                   });
+
+                   builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+
+                       @Override
+                       public void onClick(DialogInterface dialog, int which) {
+                           dialog.dismiss();
+                       }
+                   });
+
+                   builder.create().show();
+               }else {
+                   Log.d("2222","failfialifal");
+               }*/
             }
 
         });

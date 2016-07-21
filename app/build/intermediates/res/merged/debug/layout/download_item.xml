@@ -47,7 +47,14 @@
                      android:layout_marginLeft="1dp"
                      android:layout_weight="1"
                      android:text="4.83m" />
-
+                 <TextView
+                     android:id="@+id/jindu"
+                     android:layout_weight="1"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginRight="3dp"
+                     android:text="10%"
+                     android:gravity="right" />
                  <TextView
                      android:id="@+id/run_sudu"
                      android:layout_weight="1"

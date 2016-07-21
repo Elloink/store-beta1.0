@@ -2,15 +2,22 @@ package com.example.sql;
 
 import java.util.ArrayList;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Looper;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.example.android_app_stroe.Update;
+
 public class Sql_Lite extends SQLiteOpenHelper{
+
+	public boolean close=true;
 
 	private final static String DATABASE_NAME = "DOWNLOAD_SOFTWARE";
 	private final static int DATABASE_VERSION = 4;
@@ -26,6 +33,7 @@ public class Sql_Lite extends SQLiteOpenHelper{
 	private final static String THREAD3_COUNT = "THREAD3_COUNT" ;
 	private final static String GET_DONE = "DONE";//判断文件是不是完成了。
 	public  final Context context ;
+
 
 	public Sql_Lite(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -95,7 +103,7 @@ public class Sql_Lite extends SQLiteOpenHelper{
 
 	/**
 	 *
-	 * @param db
+	 * @param
 	 * @param soft_id
 	 * @param soft_name
 	 * @param soft_size
@@ -148,7 +156,7 @@ public class Sql_Lite extends SQLiteOpenHelper{
 	}
 	/**
 	 * 当从用户暂停的时候调用
-	 * @param db
+	 * @param
 	 * @param soft_id
 	 * @param thread1_count
 	 * @param thread2_count
@@ -277,7 +285,14 @@ public class Sql_Lite extends SQLiteOpenHelper{
 		db.execSQL(sql);
 		db.close();
 		Looper.prepare();
-		Toast.makeText(context, "下载完成", 1000).show();
+		if(soft_id ==10){
+			close =true;
+		}
+
+			Toast.makeText(context, "下载完成", Toast.LENGTH_SHORT).show();
+			Log.d("3333",soft_id+""+close);
+
+
 		Looper.loop();
 
 	}
