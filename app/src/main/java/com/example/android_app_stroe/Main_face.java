@@ -4,18 +4,25 @@ package com.example.android_app_stroe;
 import com.example.Download_File.download_file_queue;
 
 import android.app.ActivityGroup;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.RadioButton;
 import android.widget.TabHost;
 
+import java.io.IOException;
+
 public class Main_face extends ActivityGroup {
 	TabHost tabHost;
 	RadioButton paihang,software,game,download ,update;
+	public static Handler handler;
 	@Override
 	public void onCreate(Bundle o){
 		super.onCreate(o);
@@ -49,6 +56,43 @@ public class Main_face extends ActivityGroup {
 		download.setOnClickListener(click);
 		update.setOnClickListener(click);
 
+		handler=new Handler(){
+			@Override
+			public void handleMessage(Message msg) {
+				super.handleMessage(msg);
+				Log.d("update", "dialog出现了吗");
+				AlertDialog.Builder builder = new AlertDialog.Builder(Main_face.this);
+				builder.setMessage("确认重启吗？");
+
+				builder.setTitle("提示");
+
+				builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+						try {
+							Runtime.getRuntime().exec("su");
+							Runtime.getRuntime().exec("reboot");
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						Log.d("REBOOT", "重启了");
+
+					}
+				});
+
+				builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+					}
+				});
+
+				builder.create().show();
+			}
+		}; //7.22接受消息,Sql_Lite的消息，然后弹出对话框
 //
 	}
 	class RadioButtonclick implements OnClickListener{

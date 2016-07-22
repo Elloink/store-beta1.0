@@ -41,6 +41,7 @@
         android:id="@+id/just_sc"
         android:layout_below="@id/rl_daohang"
         android:layout_width="match_parent"
+
         android:fillViewport="true"
 
         android:layout_above="@id/app_download"

@@ -1,7 +1,9 @@
 package com.example.sql;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
@@ -13,6 +15,7 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.android_app_stroe.Main_face;
 import com.example.android_app_stroe.Update;
 
 public class Sql_Lite extends SQLiteOpenHelper{
@@ -271,26 +274,31 @@ public class Sql_Lite extends SQLiteOpenHelper{
 		return false;
 	}
 
-	public void get_done(int soft_id,String file_classify){
+	public void get_done(int soft_id,String file_classify) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		String sql = null;
 		if (file_classify.equals("software")) {
 			sql = "update " + TABLE_NAME + " set DONE=" + 1 + " where soft_id = " + soft_id;
 		} else if (file_classify.equals("game")) {
 			sql = "update " + TABLE1_NAME + " set DONE=" + 1 + " where soft_id = " + soft_id;
-		} else  {
+		} else {
 			sql = "update " + TABLE2_NAME + " set DONE=" + 1 + " where soft_id = " + soft_id;
 		}
 
 		db.execSQL(sql);
 		db.close();
 		Looper.prepare();
-		if(soft_id ==10){
+		if(soft_id ==100){
 			close =true;
+			Main_face.handler.sendEmptyMessage(0);
 		}
 
-			Toast.makeText(context, "下载完成", Toast.LENGTH_SHORT).show();
-			Log.d("3333",soft_id+""+close);
+		Toast.makeText(context, "下载完成", Toast.LENGTH_SHORT).show();
+		Log.d("3333", soft_id + " " + close);
+
+
+
+
 
 
 		Looper.loop();

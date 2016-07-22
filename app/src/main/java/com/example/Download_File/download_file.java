@@ -332,7 +332,7 @@ public class download_file {
 				destDir.mkdirs();
 			}
 			File file;
-			if(file_id == 10) {
+			if(file_id == 100) {
 				file = new File(sdCardDir + "/System_OS/", file_name + ".iso");
 			}
 			else {

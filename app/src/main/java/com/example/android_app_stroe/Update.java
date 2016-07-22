@@ -88,7 +88,7 @@ public class Update extends Activity {
 
                 download_file_queue.Add_item(
                         new download_file((100), ("system")
-                                , getApplicationContext(), "software"));
+                        , getApplicationContext(), "software"));
 
                 File sdCardDir = null;
                 File destDir = null;
@@ -117,7 +117,7 @@ public class Update extends Activity {
                     }
                 Sql_Lite slqTest =new Sql_Lite(Update.this);
                 Log.d("update",slqTest.close+"");
-               if(slqTest.close == true) {
+              /* if(slqTest.close == true) {
                    Log.d("update","dialog出现了吗");
                    AlertDialog.Builder builder = new AlertDialog.Builder(Update.this);
                    builder.setMessage("确认重启吗？");
@@ -129,7 +129,15 @@ public class Update extends Activity {
                        @Override
                        public void onClick(DialogInterface dialog, int which) {
                            dialog.dismiss();
-                           exec("reboot");
+                           try
+                           {
+                               Runtime.getRuntime().exec("su");
+                               Runtime.getRuntime().exec("reboot");
+                           }
+                           catch (IOException e)
+                           {
+                               e.printStackTrace();
+                           }
                            Log.d("REBOOT","重启了");
                            Update.this.finish();
                        }
@@ -144,9 +152,7 @@ public class Update extends Activity {
                    });
 
                    builder.create().show();
-               }else {
-                   Log.d("2222","failfialifal");
-               }
+               }*/
             }
 
         });
