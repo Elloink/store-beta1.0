@@ -41,18 +41,21 @@
              android:singleLine="true"
              android:ellipsize="marquee"
              style="@style/xhc_radiobutton"
-             android:drawableTop="@drawable/paihang" 
+             android:drawableTop="@drawable/paihang"
+             android:background="#3F51B5"
              android:text="排行"/>
           <RadioButton 
              android:id="@+id/software"
              style="@style/xhc_radiobutton"
-             android:drawableTop="@drawable/paihang" 
+             android:drawableTop="@drawable/paihang"
+              android:background="#3F51B5"
              android:text="软件"/>
 
             <RadioButton 
              android:id="@+id/game"
              style="@style/xhc_radiobutton"
              android:drawableTop="@drawable/paihang"
+                android:background="#3F51B5"
              android:text="游戏"/>
 
 
@@ -61,6 +64,7 @@
              android:id="@+id/doweload"
              style="@style/xhc_radiobutton"
              android:drawableTop="@drawable/paihang"
+            android:background="#3F51B5"
              android:text="下载"/>
 
          <RadioButton
@@ -68,6 +72,7 @@
              android:id="@+id/update"
              style="@style/xhc_radiobutton"
              android:drawableTop="@drawable/paihang"
+             android:background="#3F51B5"
              android:text="更新"/>
 
      </RadioGroup>

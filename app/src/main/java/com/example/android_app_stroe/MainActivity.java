@@ -80,7 +80,7 @@ public class MainActivity extends Activity {
 	private Handler handler = new Handler(){
 		@Override
 		public void handleMessage(Message msg){
-			viewpage.setCurrentItem(msg.arg1);
+		//1	viewpage.setCurrentItem(msg.arg1);
 		}
 	} ;
 	class click implements OnClickListener{
@@ -103,7 +103,7 @@ public class MainActivity extends Activity {
 
 				paihang = (ListView) findViewById(R.id.list_paihang);
 				scrool_all = (ScrollView)findViewById(R.id.scrool_paihang);
-				viewpage = (ViewPager)findViewById(R.id.viewpager);
+			//1	viewpage = (ViewPager)findViewById(R.id.viewpager);
 
 
 				search = (ImageView) findViewById(R.id.daohang_search);
@@ -114,10 +114,10 @@ public class MainActivity extends Activity {
 				ListView_height.setListViewHeightBasedOnChildren(paihang);
 
 
-				viewpage = (ViewPager) findViewById(R.id.viewpager);
+				//1 viewpage = (ViewPager) findViewById(R.id.viewpager);
 
 
-				viewpage.setAdapter(new MyPagerAdapter(img_page) );
+				//1 viewpage.setAdapter(new MyPagerAdapter(img_page) );
 				page_thread = new viewpage(handler);
 				page_thread.start();
 //					scrool_all.post(new xhcrunable());

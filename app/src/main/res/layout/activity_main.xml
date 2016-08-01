@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" 
             >
-      <android.support.v4.view.ViewPager
+      <!--<android.support.v4.view.ViewPager
 	       xmlns:android="http://schemas.android.com/apk/res/android"
 	       android:id="@+id/viewpager"
 	       android:layout_width="fill_parent"
@@ -70,7 +70,7 @@
             android:layout_gravity="bottom"
             android:background="#0000"
             android:textColor="#ffff" />
-      </android.support.v4.view.ViewPager>
+      </android.support.v4.view.ViewPager>-->
      <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
